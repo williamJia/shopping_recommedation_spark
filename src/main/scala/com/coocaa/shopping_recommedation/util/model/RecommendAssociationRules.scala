@@ -1,7 +1,7 @@
 package com.coocaa.shopping_recommedation.util.model
 
 import com.coocaa.shopping_recommedation.util.model.RecommendDatasetStructure.{ItemAssociation, ItemPref}
-import org.apache.spark.sql.Dataset
+import org.apache.spark.sql.{Dataset, Encoders, SparkSession}
 import org.apache.spark.sql.functions._
 
 import scala.collection.mutable
@@ -10,6 +10,7 @@ import scala.collection.mutable.ArrayBuffer
 /**
  * Created by Joe.Kwan on 2020/2/7
  */
+
 object RecommendAssociationRules extends Serializable {
 
   /**
@@ -20,11 +21,10 @@ object RecommendAssociationRules extends Serializable {
 //  def associationRules(user_item_rating: Dataset[ItemPref]): Dataset[ItemAssociation] = {
 //
 //    import user_item_rating.sparkSession.implicits._
-//    // (user: item) => (user: set(item))
 //    val user_itemset_ds = user_item_rating.groupBy("userid").agg(collect_set("itemid")).withColumnRenamed("collect_set(itemid)", "itemid_set")
 //
 //    // (item: item half matrix)
-//    val half_matrix_ds = user_itemset_ds.flatMap { row =>
+//    val half_matrix_ds = user_itemset_ds.flatMap{ row =>
 //      val itemlist = row.getAs[mutable.WrappedArray[String]](1).toArray.sorted
 //      val result = new ArrayBuffer[(String, String, Double)]()
 //      for (i <- 0 to itemlist.length -2) {
@@ -70,7 +70,5 @@ object RecommendAssociationRules extends Serializable {
 //    }
 //    output_result
 //  }
-
-
 
 }

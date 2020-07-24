@@ -1,0 +1,4 @@
+type=command
+command=sh ../bin/hot.sh
+retries=0
+retry.backoff=30000
